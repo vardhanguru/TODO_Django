@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="{% static "authentication/signin.css" %}">
+</head>
+<body>
+    <div class="container">
+
+        <div class="right-side">
+          <div class="login-form">
+            <h2>Sign In</h2>
+            <p style="color: rgb(131, 123, 123); justify-content: center">This is a login form created with Django.</p>
+
+            <form action="/signup" method="post">
+                {% csrf_token %}
+                    <label for="email"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="Username" autocomplete="off" id="username" required>
+                    <br>
+                    <label for=""><b>Firstname</b></label>
+                    <input type="text" placeholder="Enter Firstname" name="fname" autocomplete="off" id="fname" required>
+                    <br>
+                    <label for="email"><b>Last Name</b></label>
+                    <input type="text" placeholder="Enter Lastname" name="lname" autocomplete="off" id="lname" required>
+                    <br>
+                    <label for="email"><b>Email</b></label>
+                    <input type="text" placeholder="Enter Email" name="email" id="email" autocomplete="off" required>
+                    <br>
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" autocomplete="off" id="psw" required>
+                    <br>
+                    <label for="psw"><b>Confirm Password</b></label>
+                    <input type="password" placeholder="Confirm Password" name="psw2" autocomplete="off" id="psw2" required>
+                    <button type="submit">Sign Up</button>
+            </form>
+            </div>
+        </div>
+        <div class="left-side zoom-container">
+            <img src="{% static "authentication/undraw_remotely_2j6y.svg" %}" alt="Image" width="500" height="300" class="svg-image">
+          </div>
+    </div>
+
+    
+</body>
+</html>

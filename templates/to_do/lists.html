@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+    <style>
+        .strik{
+          text-decoration: line-through;
+    
+        }
+    
+
+      .container {
+    
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(125, 16, 105, 0.1);
+          text-align: center;
+          background-color: #ffffff;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+          z-index: 2; 
+    
+      }
+      
+      .task-list {   
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-left: 25%;
+        padding-right:23%
+     
+    
+      }
+      
+      .taskview {
+    
+          font-size: 23px;
+          display: flex;
+    
+    
+          align-items: center;
+          text-align: center;
+          padding-left: 5%;
+          padding-top: 7px;
+          padding-bottom: 7px;
+    
+          justify-content: left;
+          margin: 15px 0;
+    
+    
+          border: 1px solid #ddd;
+          border-radius: 8px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+          background-color: #f9f9f9;
+      }
+    
+      .icons{
+        font-size: 20px;
+        font-weight: 1000;
+        margin-left: auto;
+        padding-left: 100px;
+        padding-right: 10px;
+    
+    
+      }
+    
+      .complete{
+        color:rgb(13, 179, 13);
+      }
+    
+      .delete{
+        color:red;
+      }
+      .navbar {
+        background-color: #7d4eb0; /* Light Violet Background Color */
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    
+    .left-section {
+        color: #333;
+        font-weight: bold;
+        gap:100px;
+        margin-top: 5px; /* Adjust the top margin as needed */
+    }
+    
+
+    
+    .navbar {
+      background-color: #e2cafa; /* Light Violet Background Color */
+      padding: 10px 20px;
+      width: 100%; /* Set the navbar width to 100% */
+      box-sizing: border-box; /* Include padding in the width */
+      display: flex;
+      justify-content: space-between;
+      align-items: center; /* Center items vertically */
+    }
+    
+    .left-section {
+      color: #333;
+      font-weight: bold;
+      font-size: 21px;
+      padding-left: 15%;
+    }
+    
+    .right-section {
+      display: flex;
+      padding-right: 15%;
+      gap: 75px;
+    }
+    
+    .violet {
+    
+      color: #650876;
+      border: none;
+      padding: 10px 10px;
+      font-size: 20px;
+      cursor: pointer;
+      font-weight: 750;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    
+    .violet:hover {
+      color: white;
+      
+      text-decoration: none;
+    }
+    
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group input[type="text"],
+    .form-group textarea {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .form-group textarea {
+        height: 100px; /* Set the desired height for the description box */
+        resize: none; /* Disable textarea resizing by users */
+    }
+
+
+    
+
+      </style>
+</head>
+
+<body style="background-color: #e2cafa">
+    <div class="navbar">
+      <div class="left-section">
+          <a href="{% url 'all-tasks' %}"  <span class="violet">Todo Tasks</span>
+      </div>
+      <div class="right-section">
+        
+
+        <a  href="{% url 'signout' %} "class="violet">Logout</a>
+      </div>
+  </div>
+
+    
+    <br>
+
+    <div class="container">
+        {# Load the tag library #}
+        {% load bootstrap4 %}
+
+        {# Load CSS and JavaScript #}
+        {% bootstrap_css %}
+        {% bootstrap_javascript jquery='full' %}
+        <h3> Add your Task</h3>
+        <form method="POST" action="/todo/task">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.title.label_tag }}
+                {{ form.title }}
+            </div>
+            <div class="form-group">
+                
+                {{ form.description.label_tag }}
+                {{ form.description }}
+                <div class="char-limit" id="char-limit"></div>
+            </div>
+            <input type="submit" name="Create Task">
+        </form>
+
+
+      </div>
+
+    </div>
+    <script>
+        // Get the description input element
+        const descriptionInput = document.querySelector('#{{ form.description.id_for_label }}');
+    
+        // Get the character limit element
+        const charLimitElement = document.querySelector('#char-limit');
+    
+        // Set the maximum character limit
+        const maxChars = 100;
+    
+        // Event listener for input changes
+        descriptionInput.addEventListener('input', function() {
+            const currentChars = descriptionInput.value.length;
+            charLimitElement.textContent = `${currentChars}/${maxChars} characters`;
+    
+            // If the current characters exceed the limit, truncate the input
+            if (currentChars > maxChars) {
+                descriptionInput.value = descriptionInput.value.slice(0, maxChars);
+                charLimitElement.textContent = `${maxChars}/${maxChars} characters`;
+            }
+        });
+    </script>
+    
+
+  </body>
+
+
+</html>
+
+
+
+
+

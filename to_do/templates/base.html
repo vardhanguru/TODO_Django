@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <!-- Link to your CSS file (if any) -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://img.freepik.com/free-photo/black-background-with-laptop_23-2147615124.jpg?size=626&ext=jpg') no-repeat center center/cover;
+            /* 
+            'cover' ensures the background image covers the whole element.
+            'center center' centers the background image both horizontally and vertically.
+            */
+            height: 100vh; /* 100% of the viewport height */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+        
+        .button-wrapper {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        
+        .left-button, .right-button {
+            background-color: black;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 5px;
+
+        }
+        .left-button:hover{
+            background-color: rgb(70, 69, 69);
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        .right-button:hover{
+            background-color: rgb(70, 69, 69);
+
+            
+        }
+
+
+
+        .message{
+            font-weight: 1000;
+            font-size: 23px;
+        }
+        
+
+    
+        
+        
+        
+        
+        
+    </style>
+
+</head>
+
+<body>
+    <!-- Your content goes here -->
+
+    <div class="container">
+       <div class="button-wrapper">
+            <button id="redirectButton" class="left-button">Register</button>
+
+        </div>
+
+        <button id="login" class="right-button">Login</button><br>
+        <p class="message">Keep working, great things take time.</p>
+        
+    </div>
+
+
+    <!-- Link to your JavaScript file (if any) -->
+
+</body>
+<script>
+    document.getElementById("redirectButton").addEventListener("click", function() {
+        // Redirect to another page (replace 'targetPage.html' with the desired URL)
+        window.location.href = "{% url 'signup' %}";
+    });
+    document.getElementById("login").addEventListener("click", function() {
+        // Redirect to another page (replace 'targetPage.html' with the desired URL)
+        window.location.href = "{% url 'signin' %}";
+    });
+</script>
+
+</html>
